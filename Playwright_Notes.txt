@@ -1,0 +1,130 @@
+Playwright :
+
+Day : 01 :
+
+1Node Js
+2.Visual Studio Code 
+
+3.Create one folder wherever you want and open that Folder in VS.
+4.install Playwright through terminal : npm init playwright@latest
+5.then select all the proper values for questions.
+
+
+Node_modules:
+
+  npx playwright test
+    Runs the end-to-end tests.
+
+  npx playwright test --ui
+    Starts the interactive UI mode.
+
+  npx playwright test --project=chromium
+    Runs the tests only on Desktop Chrome.
+
+  npx playwright test example
+    Runs the tests in a specific file.
+
+  npx playwright test --debug
+    Runs the tests in debug mode.
+
+  npx playwright codegen
+    Auto generate tests with Codegen.
+
+
+5.Test : default folder where your all test will store.
+6.pakage.json -- Node project management 
+7.playwright.config.js -- playwright configuration
+8. to check the playwright version :--> npm playwright -v.
+
+9. install playwright through Vs code extension.
+  go to extension tab and type Playwright and install.
+  then go to view and type 'Playwright', select all check boxes and click on okay.
+
+10. to Run execute the scripts we have to use the commond:--> npx playwright test --headed.
+
+11. to see the html report:--> npx playwright show-report
+
+
+----------------------------------------------------------
+
+Day 02 :
+
+Creating and running an Test.
+
+1. folder is always ends with an extension it is spec.js.
+
+1.1 : another way of importing is 
+
+import {test,expect} from '@playwright/test'
+
+First code: We need to import the playwright modules . so we wrote below line 
+const {text, expect} = require('@playwright/test')
+
+
+Test('HomePage',async ({'page'}) =>{
+
+     await   page.goto('URL');
+     const   TitleOfPage=  page.title();
+     await   expect(page).toHaveTitle('NameOfTitle');
+     await   page.close();
+
+});
+
+
+2. if you want to excute in chromium in debug mode :
+
+Commond : npx playwright test HomePage.spc.js --project=chromium --headed --debug
+
+-------------------------------------------------------------
+
+Day : 03
+
+Locating the Elements in Playwright.
+
+Property
+CSS
+Xpath
+
+
+
+2. creating a locator 
+
+await page.locator('locator').click();
+await page.click('locator');
+
+3.Fill --> this commond uses to pass the value
+
+await page.fill("xpath",'value');
+
+4. Type --> this command also same 
+await page.Type("xpath",'value');
+
+5.InputBox :
+ await page.locator('xpath').fill('value');
+await page.locator('xpath').Type('value');
+
+6. Locate multiple Web Elements 
+const  elements = await page.$$(locator)
+
+7.for assertion
+
+await Expect(locatot).toBeVisiable();
+
+8. how to get all the link on given web page
+
+const AllLinks = await page.$$('a');
+
+for(const Link of AllLinks){
+
+     const actualText= await Link.textContent();
+
+     console.log(actualText)
+}
+
+-------------------------------------------------
+
+day 04: 
+
+toHaveCount();
+toHaveText()
+toHaveAttribute('id','values');
